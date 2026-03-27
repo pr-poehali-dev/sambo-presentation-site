@@ -133,91 +133,138 @@ export default function Index() {
       </nav>
 
       {/* HERO */}
-      <section id="home" className="hero-clip relative overflow-hidden"
-        style={{ minHeight: "100vh", paddingTop: "80px" }}>
-        {/* Gradient background: blue → red → yellow → white */}
-        <div className="absolute inset-0" style={{
-          background: "linear-gradient(135deg, #0a1a4e 0%, #1a3a8f 18%, #c0392b 42%, #d4a017 68%, #f5e6c8 85%, #ffffff 100%)"
-        }} />
+      <section id="home" className="relative overflow-hidden"
+        style={{ minHeight: "100vh", paddingTop: "80px", background: "#0a0f1e" }}>
 
-        {/* Diagonal shape overlays for depth */}
+        {/* Diagonal color blocks */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Blue block — left */}
           <div className="absolute" style={{
-            top: 0, left: 0, width: "55%", height: "100%",
-            background: "rgba(10,26,78,0.55)",
-            clipPath: "polygon(0 0, 100% 0, 70% 100%, 0 100%)"
+            top: 0, left: 0, width: "100%", height: "100%",
+            background: "#0d1b4b",
+            clipPath: "polygon(0 0, 62% 0, 38% 100%, 0 100%)"
           }} />
+          {/* Red block — center */}
+          <div className="absolute" style={{
+            top: 0, left: 0, width: "100%", height: "100%",
+            background: "#b01e1e",
+            clipPath: "polygon(62% 0, 78% 0, 54% 100%, 38% 100%)"
+          }} />
+          {/* Gold block — right-center */}
+          <div className="absolute" style={{
+            top: 0, left: 0, width: "100%", height: "100%",
+            background: "#c49010",
+            clipPath: "polygon(78% 0, 88% 0, 64% 100%, 54% 100%)"
+          }} />
+          {/* White block — far right */}
+          <div className="absolute" style={{
+            top: 0, left: 0, width: "100%", height: "100%",
+            background: "#e8ddd0",
+            clipPath: "polygon(88% 0, 100% 0, 100% 100%, 64% 100%)"
+          }} />
+          {/* Dark overlay for readability */}
           <div className="absolute inset-0" style={{
-            background: "linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)"
-          }} />
-          {/* Diagonal accent lines */}
-          <div className="absolute" style={{
-            top: "30%", left: "-10%", width: "130%", height: "2px",
-            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
-            transform: "rotate(-5deg)"
-          }} />
-          <div className="absolute" style={{
-            top: "60%", left: "-10%", width: "130%", height: "1px",
-            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)",
-            transform: "rotate(-5deg)"
+            background: "linear-gradient(to right, rgba(5,8,20,0.82) 0%, rgba(5,8,20,0.55) 55%, rgba(5,8,20,0.15) 100%)"
           }} />
         </div>
 
-        <div className="absolute top-0 left-0 w-2 h-full" style={{ background: "var(--sambo-red)" }} />
-        <div className="absolute top-0 left-2 w-0.5 h-full opacity-40" style={{ background: "var(--sambo-gold)" }} />
+        {/* Giant background САМБО text */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+          <span className="font-oswald font-bold select-none"
+            style={{
+              fontSize: "clamp(120px, 28vw, 320px)",
+              color: "rgba(255,255,255,0.03)",
+              letterSpacing: "-0.02em",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+              userSelect: "none"
+            }}>
+            САМБО
+          </span>
+        </div>
 
+        {/* Thin diagonal speed lines */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[15, 30, 45, 62, 75].map((top, i) => (
+            <div key={i} className="absolute" style={{
+              top: `${top}%`, left: "-5%", width: "110%",
+              height: i === 2 ? "2px" : "1px",
+              background: i === 2
+                ? "linear-gradient(90deg, transparent, rgba(192,57,43,0.4), transparent)"
+                : "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)",
+              transform: "rotate(-6deg)"
+            }} />
+          ))}
+        </div>
+
+        {/* Left accent bar */}
+        <div className="absolute top-0 left-0 w-1.5 h-full" style={{ background: "var(--sambo-red)" }} />
+
+        {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 flex items-center" style={{ minHeight: "calc(100vh - 80px)" }}>
-          <div className="max-w-2xl">
-            <div className="animate-fade-up">
-              <span className="font-oswald text-sm tracking-[0.3em] uppercase mb-4 block"
-                style={{ color: "var(--sambo-gold)" }}>
-                Секция борьбы
+          <div style={{ maxWidth: "640px" }}>
+
+            <div className="animate-fade-up flex items-center gap-3 mb-5">
+              <div style={{ width: "40px", height: "3px", background: "var(--sambo-red)" }} />
+              <span className="font-oswald text-xs tracking-[0.35em] uppercase" style={{ color: "var(--sambo-gold)" }}>
+                Секция борьбы · с 2009 года
               </span>
             </div>
-            <h1 className="font-oswald animate-fade-up-delay-1"
-              style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 0.95, textTransform: "uppercase" }}>
-              <span style={{ color: "#fff" }}>СИЛА.</span><br />
-              <span style={{ color: "var(--sambo-red)" }}>ДИСЦИПЛИ</span><span style={{ color: "#fff" }}>НА.</span><br />
-              <span style={{ color: "#fff" }}>ПОБЕДА.</span>
-            </h1>
-            <p className="font-roboto mt-6 text-lg animate-fade-up-delay-2"
-              style={{ color: "#aaa", maxWidth: "480px", lineHeight: 1.7 }}>
-              Запишись на тренировку и начни путь к чемпионству. Группы для детей от&nbsp;5&nbsp;лет и взрослых всех уровней.
+
+            {/* Giant headline */}
+            <div className="animate-fade-up-delay-1">
+              <div className="font-oswald font-bold leading-none uppercase"
+                style={{ fontSize: "clamp(4.5rem, 14vw, 10rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 0.88 }}>
+                САМ
+                <span style={{ color: "var(--sambo-red)" }}>БО</span>
+              </div>
+              <div className="font-oswald font-bold uppercase mt-1"
+                style={{ fontSize: "clamp(1.1rem, 3vw, 2rem)", color: "rgba(255,255,255,0.55)", letterSpacing: "0.25em" }}>
+                СИЛА · ДИСЦИПЛИНА · ПОБЕДА
+              </div>
+            </div>
+
+            <p className="font-roboto mt-7 animate-fade-up-delay-2"
+              style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.6)", maxWidth: "460px", lineHeight: 1.75 }}>
+              Группы для детей от&nbsp;<strong style={{ color: "#fff" }}>5 лет</strong> и взрослых. Первое занятие — бесплатно.
             </p>
+
             <div className="flex flex-wrap gap-4 mt-8 animate-fade-up-delay-3">
               <a href="#contacts"
-                className="btn-pulse font-oswald text-base tracking-widest uppercase px-8 py-4 font-bold transition-all duration-300 hover:opacity-90"
+                className="btn-pulse font-oswald text-sm tracking-[0.15em] uppercase px-8 py-4 font-bold transition-all duration-300 hover:opacity-85"
                 style={{
                   background: "var(--sambo-red)", color: "#fff",
-                  clipPath: "polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%)"
+                  clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)"
                 }}>
                 Записаться бесплатно
               </a>
               <a href="#schedule"
-                className="font-oswald text-base tracking-widest uppercase px-8 py-4 font-bold transition-all duration-300 hover:border-white"
+                className="font-oswald text-sm tracking-[0.15em] uppercase px-8 py-4 font-bold transition-all duration-300"
                 style={{
-                  border: "2px solid rgba(255,255,255,0.25)", color: "#fff",
-                  clipPath: "polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%)"
+                  border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.8)",
+                  clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)"
                 }}>
                 Расписание
               </a>
             </div>
 
-            <div className="flex flex-wrap gap-8 mt-12 animate-fade-up-delay-3">
-              {[["200+", "Спортсменов"], ["15", "Лет секции"], ["85", "Медалей/год"]].map(([n, l]) => (
+            {/* Stats */}
+            <div className="flex flex-wrap gap-10 mt-14 animate-fade-up-delay-3"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "28px" }}>
+              {[["200+", "Спортсменов"], ["15", "Лет секции"], ["85", "Медалей / год"]].map(([n, l]) => (
                 <div key={l}>
-                  <div className="font-oswald text-3xl font-bold" style={{ color: "var(--sambo-red)" }}>{n}</div>
-                  <div className="font-roboto text-xs uppercase tracking-wider" style={{ color: "#555" }}>{l}</div>
+                  <div className="font-oswald text-4xl font-bold" style={{ color: "#fff" }}>{n}</div>
+                  <div className="font-roboto text-xs uppercase tracking-widest mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>{l}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          style={{ color: "#444" }}>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          style={{ color: "rgba(255,255,255,0.2)" }}>
           <span className="font-roboto text-xs tracking-widest uppercase">Листай вниз</span>
-          <Icon name="ChevronDown" size={20} />
+          <Icon name="ChevronDown" size={18} />
         </div>
       </section>
 
