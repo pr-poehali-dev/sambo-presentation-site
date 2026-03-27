@@ -135,28 +135,36 @@ export default function Index() {
       {/* HERO */}
       <section id="home" className="hero-clip relative overflow-hidden"
         style={{ minHeight: "100vh", paddingTop: "80px" }}>
-        <div className="absolute inset-0">
-          <img src={HERO_IMAGE} alt="Самбо" className="w-full h-full object-cover object-center" />
+        {/* Gradient background: blue → red → yellow → white */}
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(135deg, #0a1a4e 0%, #1a3a8f 18%, #c0392b 42%, #d4a017 68%, #f5e6c8 85%, #ffffff 100%)"
+        }} />
+
+        {/* Diagonal shape overlays for depth */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute" style={{
+            top: 0, left: 0, width: "55%", height: "100%",
+            background: "rgba(10,26,78,0.55)",
+            clipPath: "polygon(0 0, 100% 0, 70% 100%, 0 100%)"
+          }} />
           <div className="absolute inset-0" style={{
-            background: "linear-gradient(135deg, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.65) 50%, rgba(13,13,13,0.85) 100%)"
+            background: "linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)"
+          }} />
+          {/* Diagonal accent lines */}
+          <div className="absolute" style={{
+            top: "30%", left: "-10%", width: "130%", height: "2px",
+            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
+            transform: "rotate(-5deg)"
+          }} />
+          <div className="absolute" style={{
+            top: "60%", left: "-10%", width: "130%", height: "1px",
+            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)",
+            transform: "rotate(-5deg)"
           }} />
         </div>
 
         <div className="absolute top-0 left-0 w-2 h-full" style={{ background: "var(--sambo-red)" }} />
         <div className="absolute top-0 left-2 w-0.5 h-full opacity-40" style={{ background: "var(--sambo-gold)" }} />
-
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute" style={{
-            top: "25%", left: "-10%", width: "120%", height: "1px",
-            background: "linear-gradient(90deg, transparent, rgba(192,57,43,0.25), transparent)",
-            transform: "rotate(-4deg)"
-          }} />
-          <div className="absolute" style={{
-            top: "65%", left: "-10%", width: "120%", height: "1px",
-            background: "linear-gradient(90deg, transparent, rgba(192,57,43,0.12), transparent)",
-            transform: "rotate(-4deg)"
-          }} />
-        </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 flex items-center" style={{ minHeight: "calc(100vh - 80px)" }}>
           <div className="max-w-2xl">
